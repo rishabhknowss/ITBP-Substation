@@ -17,13 +17,6 @@ const regions = [
   "Uttarakhand"
 ]
 
-const weatherConditions = {
-  "Ladakh": { temperature: "5°C", humidity: "30%", windSpeed: "20 km/h", visibility: "Excellent" },
-  "Himachal Pradesh": { temperature: "15°C", humidity: "60%", windSpeed: "10 km/h", visibility: "Good" },
-  "Sikkim": { temperature: "18°C", humidity: "75%", windSpeed: "5 km/h", visibility: "Moderate" },
-  "Arunachal Pradesh": { temperature: "22°C", humidity: "80%", windSpeed: "8 km/h", visibility: "Fair" },
-  "Uttarakhand": { temperature: "12°C", humidity: "55%", windSpeed: "15 km/h", visibility: "Good" }
-}
 
 const routes = [
   { name: "Route A", region: "Ladakh", condition: "Clear", recommendation: "Recommended" },
