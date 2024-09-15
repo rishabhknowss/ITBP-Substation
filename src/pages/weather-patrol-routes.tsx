@@ -8,7 +8,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import * as React from "react";
 const regions = [
   "All Regions",
   "Ladakh",
@@ -45,6 +44,15 @@ export default function WeatherPatrolRoutes() {
   const filteredRoutes = selectedRegion === 'All Regions' 
     ? routes 
     : routes.filter(route => route.region === selectedRegion)
+
+    const weatherConditions: { [key: string]: { temperature: string; humidity: string; windSpeed: string; visibility: string } } = {
+      "Ladakh": { temperature: "5°C", humidity: "30%", windSpeed: "20 km/h", visibility: "Excellent" },
+      "Himachal Pradesh": { temperature: "15°C", humidity: "60%", windSpeed: "10 km/h", visibility: "Good" },
+      "Sikkim": { temperature: "18°C", humidity: "75%", windSpeed: "5 km/h", visibility: "Moderate" },
+      "Arunachal Pradesh": { temperature: "22°C", humidity: "80%", windSpeed: "8 km/h", visibility: "Fair" },
+      "Uttarakhand": { temperature: "12°C", humidity: "55%", windSpeed: "15 km/h", visibility: "Good" }
+    };
+    
 
   const currentWeather = selectedRegion !== 'All Regions' ? weatherConditions[selectedRegion] : null
 

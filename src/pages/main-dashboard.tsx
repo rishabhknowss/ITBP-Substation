@@ -4,7 +4,6 @@ import { SatelliteDish, CloudSun, WrenchIcon } from 'lucide-react'
 import SatelliteDroneView from './satellite-drone-view'
 import WeatherPatrolRoutes from './weather-patrol-routes'
 import PredictiveMaintenance from './predictive-maintenance'
-import * as React from "react";
 export default function MainDashboard() {
   const [activeTab, setActiveTab] = useState('satellite-drone')
 

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Button } from "@/components/ui/button"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Camera, AlertTriangle, ChevronDown, Bell } from 'lucide-react'
 import {
   DropdownMenu,
@@ -10,7 +10,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import * as React from "react";
+
 const regions = [
   "All",
   "Ladakh",
@@ -31,17 +31,32 @@ const locations = [
   { name: "Walong", region: "Arunachal Pradesh" }
 ]
 
+// Define the type for feeds
+interface Feed {
+  name: string;
+  region: string;
+  status: string;
+  lastUpdated: Date;
+  lastMotionDetected: Date | null;
+  lastAlertSent: Date | null;
+  runningTime: number;
+}
+
 export default function SatelliteDroneView() {
   const [view, setView] = useState('satellite')
   const [selectedRegion, setSelectedRegion] = useState('All')
-  const [feeds, setFeeds] = useState(locations.map(loc => ({ 
-    ...loc, 
-    status: 'Normal', 
-    lastUpdated: new Date(),
-    lastMotionDetected: null,
-    lastAlertSent: null,
-    runningTime: 0
-  })))
+  
+  // Define the feeds state with explicit typing
+  const [feeds, setFeeds] = useState<Feed[]>(
+    locations.map(loc => ({
+      ...loc, 
+      status: 'Normal', 
+      lastUpdated: new Date(),
+      lastMotionDetected: null,
+      lastAlertSent: null,
+      runningTime: 0
+    }))
+  )
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -69,7 +84,7 @@ export default function SatelliteDroneView() {
     ? feeds 
     : feeds.filter(feed => feed.region === selectedRegion)
 
-  const sendManualAlert = (feedName) => {
+  const sendManualAlert = (feedName: string) => {
     setFeeds(prevFeeds =>
       prevFeeds.map(feed =>
         feed.name === feedName
@@ -79,7 +94,7 @@ export default function SatelliteDroneView() {
     )
   }
 
-  const formatTime = (seconds) => {
+  const formatTime = (seconds: number) => {
     const hrs = Math.floor(seconds / 3600)
     const mins = Math.floor((seconds % 3600) / 60)
     const secs = seconds % 60

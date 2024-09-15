@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import * as React from 'react'
 import {
   Card,
   CardContent,

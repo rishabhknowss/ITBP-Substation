@@ -3,7 +3,6 @@ import { Progress } from "@/components/ui/progress"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { AlertCircle } from 'lucide-react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import * as React from "react";
 const regions = ["North", "South", "East", "West", "Central"]
 
 const equipmentData = regions.map(region => ({
@@ -34,7 +33,7 @@ export default function PredictiveMaintenance() {
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
-                  {equipmentData.find(data => data.region === region).items.map(item => (
+                  {equipmentData.find(data => data.region === region )?.items.map(item => (
                     <div key={item.name}>
                       <div className="flex justify-between mb-1">
                         <span>{item.name}</span>
