@@ -31,7 +31,7 @@ export default function Login() {
     setScanningStatus("scanning");
     setStatusMessage("Scanning...");
     setTimeout(() => {
-      const success = Math.random() > 0.5;
+      const success = true;
       setScanningStatus(success ? "success" : "error");
       setStatusMessage(
         success
