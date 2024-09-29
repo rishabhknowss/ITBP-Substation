@@ -75,7 +75,7 @@ interface MapProps {
   filteredRoutes: Route[];
 }
 
-const Map: React.FC<MapProps> = ({ selectedRegion, filteredRoutes }) => {
+const Map: React.FC<MapProps> = ({ filteredRoutes }) => {
   const mapRef = useRef<HTMLDivElement>(null);
   const [map, setMap] = useState<google.maps.Map | null>(null);
   const [isLoaded, setIsLoaded] = useState(false);
