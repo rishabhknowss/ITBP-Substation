@@ -20,7 +20,7 @@ import {
   Facebook,
   Instagram,
   Search,
-  PieChart,
+  
   MapPin,
 } from "lucide-react";
 import {
@@ -35,6 +35,7 @@ import {
   Bar,
   Cell,
   Pie,
+  PieChart,
   Legend,
 } from "recharts";
 
@@ -112,25 +113,27 @@ const chartData = [
 ];
 
 const severityData = [
-  { name: "Low", value: 3 },
-  { name: "Medium", value: 3 },
-  { name: "High", value: 2 },
+  { name: "X", value: 3 ,  },
+  { name: "Facebook", value: 3 },
+  { name: "Instagram", value: 2 },
 ];
+
 
 const locationData = [
-  { name: "Border Post A", value: 2 },
-  { name: "Sector B", value: 1 },
-  { name: "Region C", value: 3 },
-  { name: "Checkpoint D", value: 2 },
+  { name: "Ladakh", value: 2 },
+  { name: "Tawang", value: 1 },
+  { name: "Shipki La", value: 3 },
+  { name: "Walong", value: 2 },
 ];
 
-const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#8884D8"];
 
 export default function EnhancedSocialMediaThreatDetectionDashboard() {
   const [selectedPlatform, setSelectedPlatform] = useState<string>("all");
   const [selectedSeverity, setSelectedSeverity] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [timeRange, setTimeRange] = useState<string>("7d");
+
+
 
   const filteredThreats = mockThreats.filter(
     (threat) =>
@@ -139,6 +142,8 @@ export default function EnhancedSocialMediaThreatDetectionDashboard() {
       (searchQuery === "" ||
         threat.content.toLowerCase().includes(searchQuery.toLowerCase()))
   );
+
+  const COLORS = ["#1DA1F2", "#4267B2", "#E1306C"];
 
   return (
     <div className="container mx-auto p-4">
@@ -274,9 +279,9 @@ export default function EnhancedSocialMediaThreatDetectionDashboard() {
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="all">All Severities</SelectItem>
-                    <SelectItem value="low">Low</SelectItem>
-                    <SelectItem value="medium">Medium</SelectItem>
-                    <SelectItem value="high">High</SelectItem>
+                    <SelectItem value="low">X</SelectItem>
+                    <SelectItem value="medium">Facebook</SelectItem>
+                    <SelectItem value="high">Instagram</SelectItem>
                   </SelectContent>
                 </Select>
                 <div className="flex w-full md:w-auto">
@@ -389,19 +394,14 @@ export default function EnhancedSocialMediaThreatDetectionDashboard() {
                         data={severityData}
                         cx="50%"
                         cy="50%"
-                        labelLine={false}
-                        label={({ name, percent }) =>
-                          `${name} ${(percent * 100).toFixed(0)}%`
-                        }
                         outerRadius={80}
                         fill="#8884d8"
                         dataKey="value"
+                        nameKey="name"
+                        label
                       >
-                        {severityData.map(( {index} : any) => (
-                          <Cell
-                            key={`cell-${index}`}
-                            fill={COLORS[index % COLORS.length]}
-                          />
+                        {severityData.map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                         ))}
                       </Pie>
                       <Tooltip />
@@ -426,7 +426,7 @@ export default function EnhancedSocialMediaThreatDetectionDashboard() {
                       <YAxis />
                       <Tooltip />
                       <Bar dataKey="value" fill="#8884d8">
-                        {locationData.map(( {index} : any) => (
+                        {locationData.map(({ index }: any) => (
                           <Cell
                             key={`cell-${index}`}
                             fill={COLORS[index % COLORS.length]}
