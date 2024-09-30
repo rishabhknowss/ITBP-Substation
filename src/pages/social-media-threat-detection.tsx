@@ -400,7 +400,7 @@ export default function EnhancedSocialMediaThreatDetectionDashboard() {
                         nameKey="name"
                         label
                       >
-                        {severityData.map((entry, index) => (
+                        {severityData.map(({index}:any) => (
                           <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                         ))}
                       </Pie>
